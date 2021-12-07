@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+
+  django:
+    container_name: django_prod
+
+
+
+  nginx:
+    container_name: nginx_prod
+    depends_on:
+      - django
+      - front
+
+    volumes:
+      - frontend:/var/www/front
+
+  postgres:
+    container_name: postgres_prod
+
+  front:
+    container_name: front_prod
+    build:
+      args:
+        - PRODUCTION=true
+    volumes:
+      - frontend:/usr/app/dist
+
+
+volumes:
+  frontend:

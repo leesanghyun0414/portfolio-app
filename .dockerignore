@@ -1,0 +1,4 @@
+### FRONTEND
+frontend/node_modules/
+frontend/yarn-error.log
+frontend/yarn.lock

@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+
+  django:
+    init: true
+    build:
+      context: .
+      dockerfile: backend/containers/django/Dockerfile
+
+    depends_on:
+      - postgres
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "81:81"
+      - "443:443"
+    links:
+      - nginx
+    restart: always
+    depends_on:
+      - nginx
+
+  nginx:
+    init: true
+    build:
+      context: .
+      dockerfile: ./backend/containers/nginx/Dockerfile
+    volumes:
+      - ./backend/containers/nginx/conf:/etc/nginx/conf.d
+      - ./backend/containers/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./backend/containers/django/static:/var/www/static
+      - ./backend/containers/django/media:/var/www/media
+
+
+
+  postgres:
+    init: true
+    build:
+      context: .
+      dockerfile: ./backend/containers/database/Dockerfile
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  front:
+    init: true
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+
+
+
+
+
+volumes:
+  postgres_data:
+

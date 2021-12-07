@@ -1,0 +1,36 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+isort = "==5.9.3"
+pylint = "==2.10.2"
+black = "==21.8b0"
+coverage = "*"
+factory-boy = "*"
+pytest = "*"
+
+[packages]
+Pillow = "==8.3.2"
+Django = "==3.2.5"
+graphene-django = "==2.15.0"
+django-cors-headers = "==3.7.0"
+django-environ-2 = "==2.1.0"
+django-graphql-jwt = "==0.3.0"
+django-graphql-auth = "*"
+django-filter = "*"
+uwsgi = { version = "*", sys_platform = "== 'linux' " }
+psycopg2 = "*"
+django-treebeard = "*"
+django-cleanup = "*"
+required = "*"
+django-jazzmin = "*"
+django-debug-toolbar = "*"
+
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

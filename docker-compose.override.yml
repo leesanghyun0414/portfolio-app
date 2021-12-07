@@ -1,0 +1,87 @@
+version: '3.9'
+
+services:
+
+  django:
+    container_name: django_dev
+    expose:
+      - "8081"
+    secrets:
+      - django_db_url
+      - django_superuser_password
+    env_file:
+      - envs/dev/django/.env
+
+    volumes:
+      - ./backend/containers/django/blog:/usr/app/blog
+      - ./backend/containers/django/.pylintc:/usr/app/.pylintc
+      - ./backend/containers/django/cafe:/usr/app/cafe
+      - ./backend/containers/django/config:/usr/app/config
+      - ./backend/containers/django/static:/usr/app/static
+      - ./backend/containers/django/media:/usr/app/media
+      - ./backend/containers/django/manage.py:/usr/app/manage.py
+
+
+
+
+  https-portal:
+
+
+    environment:
+      DOMAINS: "localhost -> http://nginx:80"
+      STAGE: "local"
+      WEBSOCKET: "true"
+
+
+
+  nginx:
+    container_name: nginx_dev
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend/src/dist:/var/www/front
+    depends_on:
+      - django
+
+
+
+  postgres:
+    container_name: postgres_dev
+    env_file:
+      - envs/dev/database/.env.db
+    environment:
+      PGPASSFILE: /run/secrets/db_password
+    ports:
+      - "5432:5432"
+    secrets:
+      - source: db_password
+        target: db_password
+        mode: 0600
+
+
+  front:
+    container_name: front_dev
+    build:
+      args:
+        - PRODUCTION=0
+      target: dev-stage
+    ports:
+      - "3000:3000"
+      - "5000:5000"
+    volumes:
+      - ./frontend/src:/usr/app/src
+      - ./frontend/tailwind.config.js:/usr/app/tailwind.config.js
+      - ./frontend/codegen.yml:/usr/app/codegen.yml
+
+
+
+secrets:
+  django_db_url:
+    file: ./envs/dev/django/db_secret.txt
+  django_superuser_password:
+    file: ./envs/dev/django/superuser_password.txt
+  db_password:
+    file:
+      ./envs/dev/database/db_password.txt
+
+

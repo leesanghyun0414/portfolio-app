@@ -1,0 +1,159 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type AuthorType {
+	id: ID!
+	user: UserType!
+	website: String!
+	bio: String!
+	postSet: [PostType!]!
+	like: [LikeType!]!
+}
+
+type CreatePost {
+	body: String
+	post: PostType
+}
+
+scalar DateTime
+
+scalar ExpectedErrorType
+
+type LikePost {
+	isLiked: Boolean
+	userId: ID
+	postId: ID
+}
+
+type LikeType {
+	id: ID!
+	user: AuthorType!
+	post: PostType!
+	dateCreated: DateTime!
+	dateModified: DateTime!
+}
+
+type Mutation {
+	register(email: String!, username: String!, password1: String!, password2: String!): Register
+	likePost(postId: ID, userId: ID): LikePost
+	createPost(subtitle: String, text: String, title: String, username: String): CreatePost
+}
+
+interface Node {
+	id: ID!
+}
+
+type PageInfo {
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+	startCursor: String
+	endCursor: String
+}
+
+type PostBodyType {
+	id: ID!
+	post: PostType!
+	text: String!
+	dateCreated: DateTime!
+	dateModified: DateTime!
+}
+
+type PostType {
+	id: ID!
+	author: AuthorType!
+	tag(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String): TagNodeConnection!
+	title: String!
+	subtitle: String!
+	dateCreated: DateTime!
+	dateModified: DateTime!
+	publishDate: DateTime
+	published: Boolean!
+	photo: String!
+	body: PostBodyType
+	like: [LikeType!]!
+}
+
+type Query {
+	user(id: ID!): UserNode
+	users(offset: Int, before: String, after: String, first: Int, last: Int, email: String, username: String, username_Icontains: String, username_Istartswith: String, isActive: Boolean
+		, status_Archived: Boolean, status_Verified: Boolean, status_SecondaryEmail: String): UserNodeConnection
+	me: UserNode
+	allPosts: [PostType]
+	tag(id: ID!): TagNode
+	allTags(offset: Int, before: String, after: String, first: Int, last: Int, name: String, name_Icontains: String): TagNodeConnection
+	authorByUser(username: String): AuthorType
+	postByAuthor(username: String): [PostType]
+	postByTag(tag: String): [PostType]
+	totalLikeCountByPost(postId: Int!): Int
+	totalLikeCountByUser(postId: Int!): Int
+	allLikedPostByUser(userId: ID!): [PostType]
+	postBody(postId: ID!): PostBodyType
+	postById(postId: ID!): PostType
+}
+
+type Register {
+	success: Boolean
+	errors: ExpectedErrorType
+	refreshToken: String
+	token: String
+}
+
+type TagNode implements Node {
+	id: ID!
+	name: String!
+	postSet: [PostType!]!
+}
+
+type TagNodeConnection {
+	pageInfo: PageInfo!
+	edges: [TagNodeEdge]!
+}
+
+type TagNodeEdge {
+	node: TagNode
+	cursor: String!
+}
+
+type UserNode implements Node {
+	id: ID!
+	lastLogin: DateTime
+	username: String!
+	firstName: String!
+	lastName: String!
+	email: String!
+	isStaff: Boolean!
+	isActive: Boolean!
+	dateJoined: DateTime!
+	profile: AuthorType
+	pk: Int
+	archived: Boolean
+	verified: Boolean
+	secondaryEmail: String
+}
+
+type UserNodeConnection {
+	pageInfo: PageInfo!
+	edges: [UserNodeEdge]!
+}
+
+type UserNodeEdge {
+	node: UserNode
+	cursor: String!
+}
+
+type UserType {
+	id: ID!
+	lastLogin: DateTime
+	username: String!
+	firstName: String!
+	lastName: String!
+	email: String!
+	isStaff: Boolean!
+	isActive: Boolean!
+	dateJoined: DateTime!
+	profile: AuthorType
+	password: String!
+	isSuperuser: Boolean!
+}

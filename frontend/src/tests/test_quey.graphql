@@ -1,0 +1,10 @@
+mutation {
+	likePost(postId: 1, userId: 3) {
+		isLiked
+		userId
+		postId
+	}
+}
+
+
+
