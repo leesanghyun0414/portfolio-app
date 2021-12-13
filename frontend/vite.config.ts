@@ -5,6 +5,7 @@ import vue from "@vitejs/plugin-vue"
 export default defineConfig({
   root: "src",
   plugins: [vue()],
+
   server: {
     host: true,
     watch: {
@@ -13,6 +14,6 @@ export default defineConfig({
     port: 3000,
   },
   resolve: {
-    alias: { "@": "/src/" },
+    alias: { "@": "/src/", vue: "vue/dist/vue.esm-bundler.js" },
   },
 })
