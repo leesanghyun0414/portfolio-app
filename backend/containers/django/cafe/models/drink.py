@@ -12,7 +12,9 @@ from .size import Size
 
 class Drink(CommonInfo, models.Model):
     class Meta:
+
         db_table = "cafe_drink_item"
+
         constraints = [
             models.UniqueConstraint(
                 fields=["menu", "menu_type"], name="unique_drink_menu"
