@@ -1,13 +1,15 @@
 from django.db import models
 
 from ..helpers.path_helper import upload_path
-from ..managers.menu_manager import DrinkMenuProxyManager
+
 from ..types import MenuType
 from .category import Category
 from .common_info import CommonInfo
 
 
 class Menu(CommonInfo, models.Model):
+
+
     class Meta:
         db_table = "cafe_menu"
         constraints = [

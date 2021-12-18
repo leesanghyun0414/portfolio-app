@@ -53,8 +53,8 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    "SCHEMA": "blog.schema.schema",
-    # "SCHEMA": "cafe.schema.schema",
+    # "SCHEMA": "blog.schema.schema",
+    "SCHEMA": "cafe.schema.schema",
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],
