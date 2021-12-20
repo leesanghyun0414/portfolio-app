@@ -5,6 +5,9 @@ from django.db import models
 
 
 class CommonInfo(models.Model):
+
+
+
     class Meta:
         abstract = True
 
