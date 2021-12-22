@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
-import MenuPage from "../pages/Menupage.vue"
+import MenuPage from "../pages/MenuPage.vue"
 
 import MapPage from "../pages/MapPage.vue"
 import InformationPage from "../pages/InformationPage.vue"
-import HomePage from "../pages/HomePage.vue"
+import Menu from "../components/menu/Menu.vue"
+import MenuCategory from "../components/menu_category/MenuCategory.vue"
 
 const routes: RouteRecordRaw[] = [
-  { path: "/", component: HomePage, name: "Home" },
   {
     path: "/map",
     component: MapPage,
@@ -15,13 +15,25 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/menu",
     component: MenuPage,
+    children: [
+      {
+        path: "",
+        component: MenuCategory,
+        name: "MenuCategory",
+      },
+      {
+        path: "list/:menuName",
+        component: Menu,
+        props: true,
+        name: "Menu",
+      },
+    ],
     name: "MenuPage",
-    props: false,
   },
   {
     path: "/information",
     component: InformationPage,
-    name: "Information",
+    name: "InformationPage",
   },
 ]
 

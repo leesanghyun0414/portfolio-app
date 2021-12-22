@@ -1,8 +1,16 @@
 
+<template>
+  <li>
+    <div>
+      <router-link :to="{name:'Menu',params:{menuName:childCategoryItem.data.name.replace(/\s+/g, '')}}">
+        {{ childCategoryItem.data.name }}
+      </router-link>
+    </div>
+  </li>
+</template>
 <script lang="ts">
 import {defineComponent} from "vue"
 
-// children要素が必要
 
 export default defineComponent({
   name: "NavBarChildList",
@@ -13,9 +21,7 @@ export default defineComponent({
     }
   },
 
-setup(props) {
-    console.log(props.childCategoryItem)
-}
+
 
 
 })

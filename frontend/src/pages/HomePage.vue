@@ -1,13 +1,12 @@
 <template>
-  <AppHeader />
+  <button type="button" />
+  <router-view />
 </template>
 <script lang="ts">
 import {defineComponent} from "vue"
-import AppHeader from "../components/common/header/AppHeader.vue"
 
 export default defineComponent({
   name: "HomePage",
-  components: {AppHeader}
 })
 </script>
 
