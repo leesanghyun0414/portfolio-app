@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
 import PostPreview from "../pages/PostPreview.vue"
 import HelloWorld from "../components/HelloWorld.vue"
-// import PostDetail from "../pages/PostDetail.vue"
+import MapPage from "../pages/MapPage.vue"
+import InformationPage from "../pages/InformationPage.vue"
 
 const routes: RouteRecordRaw[] = [
   { path: "/", component: HelloWorld, name: "HelloWorld" },
@@ -17,12 +18,17 @@ const routes: RouteRecordRaw[] = [
     name: "Root",
     props: true,
   },
-  // {
-  //   path: "/post/:postId",
-  //   component: PostDetail,
-  //   name: "PostDetail",
-  //   props: true,
-  // },
+  {
+    path: "/map",
+    component: MapPage,
+    name: "",
+  },
+
+  {
+    path: "/information",
+    component: InformationPage,
+    name: "",
+  },
 ]
 
 export const router = createRouter({
