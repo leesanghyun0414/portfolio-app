@@ -1,5 +1,5 @@
 
-ARG NODE_VERSION=16-alpine3.14
+ARG NODE_VERSION=17-alpine3.14
 
 FROM node:${NODE_VERSION} as build-stage
 
@@ -52,7 +52,8 @@ FROM node:${NODE_VERSION} as interpreter_stage
 
 WORKDIR /usr/app
 
+COPY frontend/package.json /usr/app
 
 # MODULES
-COPY --from=build-stage /usr/app/node_modules ./node_modules
+#COPY --from=build-stage /usr/app/node_modules ./node_modules
 
