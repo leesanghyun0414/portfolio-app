@@ -1,37 +1,30 @@
 <template>
-    
-
-
+  <ul>
+    <NavBarList
+      v-for="item in category"
+      :key="item.id"
+    />
+  </ul>
 </template>
 
-
-
-
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue"
 import { useQuery, useResult } from "@vue/apollo-composable"
-import gql from "graphql-tag"
 import { GET_ALLCATEGORY } from "../../../api/graphql/querys"
-import { watch } from "vue"
+import NavBarList from "./NavBarList.vue"
 
 export default defineComponent({
-   name: "MenuNavBar",
-   
-// TODO: set up 追加
-   setup() {
+  name: "MenuNavBar",
 
-const { result } = useQuery(GET_ALLCATEGORY)
+  components: { NavBarList },
+  setup() {
+    const { result } = useQuery(GET_ALLCATEGORY)
+    const category = useResult(result, null, (data) => data.allCategory)
 
-return { 
-   result,
-}
-
-watch(result, value => {
-      console.log(GET_ALLCATEGORY)
-   
-   
-   }
-
-
+    return {
+      result,
+      category,
+    }
+  },
+})
 </script>
-

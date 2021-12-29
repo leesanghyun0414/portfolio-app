@@ -1,16 +1,22 @@
 <template>
-    <p>aa</p>
+    <MenuNavBar />
         
 </template>
 
 <script lang="ts">
-import { defineComponent} from 'vue'
-import MenuCategory from "../components/MenuCategory.vue"
+import { useQuery } from "@vue/apollo-composable"
+import { defineComponent} from "vue"
+import { GET_ALLCATEGORY } from "../api/graphql/querys"
+import MenuNavBar from "../components/common/NavBar/MenuNavBar.vue"
 export default defineComponent({
-    name:"MenuPage",
-    components: {MenuCategory},
+    name:"MenuPage",   
+        components: {MenuNavBar}
+,
+setup() {
+    const { result,error } = useQuery(GET_ALLCATEGORY)
 
-
+return {result,error}
+}
 })
 </script>
 
