@@ -3,6 +3,7 @@
     <NavBarList
       v-for="item in category"
       :key="item.id"
+      :category-item="item"
     />
   </ul>
 </template>
@@ -12,6 +13,8 @@ import { defineComponent } from "vue"
 import { useQuery, useResult } from "@vue/apollo-composable"
 import { GET_ALLCATEGORY } from "../../../api/graphql/querys"
 import NavBarList from "./NavBarList.vue"
+
+
 
 export default defineComponent({
   name: "MenuNavBar",
