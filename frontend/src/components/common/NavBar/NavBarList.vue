@@ -1,4 +1,14 @@
-<template></template>
+<template>
+  <li>
+    <ul v-if="categoryItem.children">
+      <NavBarChildList
+        v-for="childItem in categoryItem"
+        :key="childItem.id"
+        :child-category-item="childItem"
+      />
+    </ul>
+  </li>
+</template>
 
 <script lang="ts">
 import {defineComponent} from "vue"
