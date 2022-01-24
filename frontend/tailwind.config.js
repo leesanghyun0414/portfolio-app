@@ -13,7 +13,11 @@ module.exports = {
       xl: "1.25rem",
       "2xl": "1.5rem",
     },
-    extend: {},
+    extend: {
+      colors: {
+        "regal-blue": "#04043B",
+      },
+    },
   },
   variants: {
     extend: {},
