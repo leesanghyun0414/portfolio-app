@@ -1,8 +1,18 @@
 <template>
-  <li>
-    <ul v-if="categoryItem.children">
+  <li @click="toggleChildCategory">
+    <div>
+      <p>
+        {{ categoryItem.data.name }}
+      </p>
+    </div>
+    
+    <ul 
+      v-if="categoryItem.children"
+      class=" text-xl tracking-wide"
+      :class="childCategoryDisplay"
+    >
       <NavBarChildList
-        v-for="childItem in categoryItem"
+        v-for="childItem in categoryItem.children"
         :key="childItem.id"
         :child-category-item="childItem"
       />
@@ -13,6 +23,8 @@
 <script lang="ts">
 import {defineComponent} from "vue"
 import NavBarChildList from "./NavBarChildList.vue"
+import {data} from "autoprefixer"
+
 
 
 export default defineComponent({
@@ -21,19 +33,43 @@ export default defineComponent({
   props: {
     categoryItem: {
       type: Object,
-      required: true
+      required: true 
     }
   }
   ,
-  setup(props) {
+setup() {
+},
 
-    const arr = (Object.keys(props.categoryItem) as (keyof typeof props.categoryItem)[]).map((key) => {
-      return { key, value: props.categoryItem[key]}
+data(){
+    return{
+     childCategoryDisplay:{
+       hidden:false,
+       ["inline-grid"]:true
+     }
+
+     }
 
 
-    })
-    console.log(typeof arr)
-    // console.log(props.categoryItem)
-  }
+    },
+methods:{
+    toggleChildCategory(){
+      this.childCategoryDisplay.hidden = !this.childCategoryDisplay.hidden
+      this.childCategoryDisplay["inline-grid"] = !this.childCategoryDisplay["inline-grid"]
+    }
+}
+
+
+
+
+
+
+
+  
 })
 </script>
+
+
+<style>
+
+
+</style>
