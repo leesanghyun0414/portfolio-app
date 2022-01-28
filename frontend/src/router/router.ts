@@ -1,17 +1,28 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
-import PostPreview from "../pages/PostPreview.vue"
-import HelloWorld from "../components/HelloWorld.vue"
-// import PostDetail from "../pages/PostDetail.vue"
-import MenuPage from "../pages/MenuPage.vue"
-const routes: RouteRecordRaw[] = [
+import MenuPage from "../pages/Menupage.vue"
 
-  
-{
-  path: "/menu",
-  component: MenuPage,
-  name: "MenuPage",
-  props: false,
-}
+import MapPage from "../pages/MapPage.vue"
+import InformationPage from "../pages/InformationPage.vue"
+import HomePage from "../pages/HomePage.vue"
+
+const routes: RouteRecordRaw[] = [
+  { path: "/", component: HomePage, name: "Home" },
+  {
+    path: "/map",
+    component: MapPage,
+    name: "Map",
+  },
+  {
+    path: "/menu",
+    component: MenuPage,
+    name: "MenuPage",
+    props: false,
+  },
+  {
+    path: "/information",
+    component: InformationPage,
+    name: "Information",
+  },
 ]
 
 export const router = createRouter({

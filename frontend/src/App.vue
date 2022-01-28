@@ -1,38 +1,23 @@
 <template>
-
-  <img
-    alt="Vue logo"
-    src="./assets/logo.png"
-  >
-
-  <router-view />
+  <HomePage />
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue"
 
 
-
-
+import HomePage from "./pages/HomePage.vue"
 
 
 export default defineComponent({
   name: "App",
-
-
+  components: {HomePage},
 
 })
 </script>
 
 <style>
-#counter {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #464a4b;
 
-}
 
 img {
   display: inline !important;
