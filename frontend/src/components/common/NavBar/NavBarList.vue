@@ -1,5 +1,5 @@
 <template>
-  <li @click="toggleChildCategory">
+  <li >
     <div>
       <p>
         {{ categoryItem.data.name }}

@@ -11,12 +11,7 @@ import MenuNavBar from "../components/common/NavBar/MenuNavBar.vue"
 export default defineComponent({
   name: "MenuPage",
   components: {MenuNavBar}
-  ,
-  setup() {
-    const {result, error} = useQuery(GET_ALLCATEGORY)
 
-    return {result, error}
-  }
 })
 </script>
 
