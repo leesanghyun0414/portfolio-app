@@ -1,5 +1,6 @@
 <template>
-
+  <button type="button" />
+  <router-view />
 </template>
 <script lang="ts">
 import {defineComponent} from "vue"
