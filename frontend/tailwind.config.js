@@ -12,8 +12,13 @@ module.exports = {
       lg: "1.125rem",
       xl: "1.25rem",
       "2xl": "1.5rem",
+      "navbar-base":"2.2rem",
     },
-    extend: {},
+    extend: {
+      colors: {
+        "regal-blue": "#04043B",
+      },
+    },
   },
   variants: {
     extend: {},
