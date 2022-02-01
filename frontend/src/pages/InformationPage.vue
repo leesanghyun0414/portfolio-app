@@ -1,6 +1,4 @@
-<template>
-  <p>sfsff</p>
-</template>
+<template />
 
 
 <script lang="ts">
