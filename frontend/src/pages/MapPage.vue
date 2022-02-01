@@ -1,24 +1,13 @@
-<template>
-  <router-view />
-</template>
+<template />
 
 <script lang="ts">
 import {defineComponent} from "vue"
 
-
-
-
 export default defineComponent({
-  name: "App",
-
-
+  name: "MapPage"
 })
 </script>
 
-<style>
+<style scoped>
 
-
-img {
-  display: inline !important;
-}
 </style>

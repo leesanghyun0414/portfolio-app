@@ -72,6 +72,7 @@ services:
       - ./frontend/src:/usr/app/src
       - ./frontend/tailwind.config.js:/usr/app/tailwind.config.js
       - ./frontend/codegen.yml:/usr/app/codegen.yml
+      - node_modules:/usr/app/node_modules
 
 
 
@@ -85,3 +86,5 @@ secrets:
       ./envs/dev/database/db_password.txt
 
 
+volumes:
+    node_modules:
