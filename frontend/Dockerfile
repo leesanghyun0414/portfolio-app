@@ -1,5 +1,5 @@
 
-ARG NODE_VERSION=16-alpine3.14
+ARG NODE_VERSION=17-alpine3.14
 
 FROM node:${NODE_VERSION} as build-stage
 
