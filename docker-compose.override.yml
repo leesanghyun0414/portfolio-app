@@ -86,11 +86,5 @@ secrets:
       ./envs/dev/database/db_password.txt
 
 
-
 volumes:
-  node_modules:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./frontend/node_modules
+    node_modules:

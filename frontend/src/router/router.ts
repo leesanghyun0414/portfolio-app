@@ -5,8 +5,10 @@ import MapPage from "../pages/MapPage.vue"
 import InformationPage from "../pages/InformationPage.vue"
 import Menu from "../components/menu/Menu.vue"
 import MenuCategory from "../components/menu_category/MenuCategory.vue"
+import HomePage from "../pages/HomePage.vue"
 
 const routes: RouteRecordRaw[] = [
+  {path: "/", component: HomePage, name:"Homepage"},
   {
     path: "/map",
     component: MapPage,
