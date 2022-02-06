@@ -1,10 +1,13 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
-import PostPreview from "../pages/PostPreview.vue"
-import HelloWorld from "../components/HelloWorld.vue"
-// import PostDetail from "../pages/PostDetail.vue"
+import MapPage from "../pages/MapPage.vue"
+import HomePage from "../pages/HomePage.vue"
+import MenuPage from "../pages/MenuPage.vue"
+import MenuCategory from "../pages/MenuCategory.vue"
+import Menu from "../components/menu/Menu.vue"
+import InformationPage from "../pages/InformationPage.vue"
 
 const routes: RouteRecordRaw[] = [
-  {path: "/", component: HomePage, name:"Homepage"},
+  { path: "/", component: HomePage, name: "Homepage" },
   {
     path: "/map",
     component: MapPage,
