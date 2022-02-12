@@ -36,7 +36,7 @@
         alt="wifi"
       >
       <img
-        rc="../assets/charge.png"
+        src="../assets/charge.png"
         alt="charge"
       >
       <img
