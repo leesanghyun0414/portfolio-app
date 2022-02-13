@@ -62,6 +62,7 @@ import { HOME_MESSAGES } from "../constants/homeMessages"
 export default defineComponent({
   name: "HomePage",
 
+
   setup() {
 
     return {
