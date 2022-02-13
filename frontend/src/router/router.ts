@@ -7,11 +7,11 @@ import Menu from "../components/menu/Menu.vue"
 import InformationPage from "../pages/InformationPage.vue"
 
 const routes: RouteRecordRaw[] = [
-  { path: "/", component: HomePage, name: "Homepage" },
+  { path: "/", component: HomePage, name: "HomePage" },
   {
     path: "/map",
     component: MapPage,
-    name: "Map",
+    name: "MapPage",
   },
   {
     path: "/menu",
@@ -30,11 +30,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
     name: "MenuPage",
-  },
-  {
-    path: "/information",
-    component: InformationPage,
-    name: "InformationPage",
   },
 ]
 

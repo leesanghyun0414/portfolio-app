@@ -55,5 +55,5 @@ WORKDIR /usr/app
 COPY frontend/package.json /usr/app
 
 # MODULES
-#COPY --from=build-stage /usr/app/node_modules ./node_modules
+COPY --from=build-stage /usr/app/node_modules ./node_modules
 

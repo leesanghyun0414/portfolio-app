@@ -1,5 +1,4 @@
 <template>
-  <AppHeader />
   <router-view />
 
   <div class="grid gap-y-4 max-w-7xl text-regal-blue font-medium tracking-wider text-base md:text-2xl">
@@ -62,6 +61,7 @@ import { HOME_MESSAGES } from "../constants/homeMessages"
 
 export default defineComponent({
   name: "HomePage",
+
 
   setup() {
 

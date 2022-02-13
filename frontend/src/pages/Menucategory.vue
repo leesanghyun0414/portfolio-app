@@ -1,6 +1,4 @@
-<template>
-  $END$
-</template>
+<template />
 
 <script lang="ts">
 import { defineComponent } from "vue"
