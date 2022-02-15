@@ -10,7 +10,7 @@
     </div>
     <div class="inline-grid grid-rows-2 ">
       <div class="inline-grid grid-rows-none md:grid-cols-2 gap-6 py-4 md:mx-10">
-        <p class="pl-14 pr-10 py-10 order-last">
+        <p class="md:my-auto md:mx-auto order-last my-10 mx-14 leading-loose font-semibold">
           {{ HOME_MESSAGES.concept }}
         </p>   
         <span>
@@ -25,7 +25,7 @@
           src="../assets/coffee_image2.jpg"
           alt="coffeeimage"
         >
-        <p class="p-10 md:order-first ">
+        <p class="md:my-auto md:mx-auto md:order-first my-10 mx-14 leading-loose font-semibold">
           {{ HOME_MESSAGES.subConcept }}
         </p>
       </div>
