@@ -2,15 +2,15 @@
   <router-view />
 
   <div class="grid gap-y-4 max-w-7xl text-regal-blue font-medium tracking-wider text-base md:text-2xl">
-    <div>
+    <div class="hidden md:inline-block">
       <img
         src="../assets/coffeshop_top_imagepicture.jpg"
         alt="cofeeshoppicture"
       >
     </div>
     <div class="inline-grid grid-rows-2 ">
-      <div class="inline-grid grid-rows-none md:grid-cols-2 gap-6 py-4 mx-4">
-        <p class="pl-14 pr-10 py-10 order-last">
+      <div class="inline-grid grid-rows-none md:grid-cols-2 gap-6 py-4 md:mx-10">
+        <p class="md:my-auto md:mx-auto order-last my-10 mx-14 leading-loose font-semibold">
           {{ HOME_MESSAGES.concept }}
         </p>   
         <span>
@@ -20,12 +20,12 @@
           >
         </span>
       </div>
-      <div class="inline-grid grid-rows-none md:grid-cols-2 gap-6 py-4 ml-4 mr-4">
+      <div class="inline-grid grid-rows-none md:grid-cols-2 gap-6 py-4 md:mx-10">
         <img
           src="../assets/coffee_image2.jpg"
           alt="coffeeimage"
         >
-        <p class="p-10 md:order-first ">
+        <p class="md:my-auto md:mx-auto md:order-first my-10 mx-14 leading-loose font-semibold">
           {{ HOME_MESSAGES.subConcept }}
         </p>
       </div>

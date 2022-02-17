@@ -38,6 +38,12 @@ class Query(ObjectType):
     menu_path = graphene.Field(MenuType, menu_id=graphene.ID(required=True))
     all_menu = graphene.List(MenuType)
     all_category = GenericScalar()
+    menu_by_category_id = graphene.List(
+        MenuType, category_id=graphene.ID(required=True)
+    )
+
+    def resolve_menu_by_category_id(root, info, category_id):
+        return Menu.objects.select_related("category").filter(category=category_id)
 
     def resolve_all_category(root, info):
         return Category.get_category()
