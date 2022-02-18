@@ -24,4 +24,5 @@ type Query {
   allMenu: [MenuType]
   allCategory: GenericScalar
   menuByCategoryId(categoryId: ID!): [MenuType]
+  menuById(menuId: ID!, isReleased: Boolean = true): MenuType
 }
