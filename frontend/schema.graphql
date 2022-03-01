@@ -1,26 +1,28 @@
 schema {
-    query: Query
+  query: Query
 }
 
 type CategoryType {
-    id: ID!
-    path: String!
-    numchild: Int!
-    name: String!
+  id: ID!
+  path: String!
+  numchild: Int!
+  name: String!
 }
 
 scalar GenericScalar
 
 type MenuType {
-    name: String!
-    calorie: Int!
-    price: Int!
-    image: String!
-    category: CategoryType!
+  name: String!
+  calorie: Int!
+  price: Int!
+  image: String!
+  category: CategoryType!
 }
 
 type Query {
-    menuPath(menuId: ID!): MenuType
-    allMenu: [MenuType]
-    allCategory: GenericScalar
+  menuPath(menuId: ID!): MenuType
+  allMenu: [MenuType]
+  allCategory: GenericScalar
+  menuByCategoryId(categoryId: ID!): [MenuType]
+  menuById(menuId: ID!, isReleased: Boolean = true): MenuType
 }

@@ -20,7 +20,7 @@ services:
       - ./backend/containers/django/static:/usr/app/static
       - ./backend/containers/django/media:/usr/app/media
       - ./backend/containers/django/manage.py:/usr/app/manage.py
-
+      - ./frontend/schema.graphql:/usr/share/schema.graphql
 
 
 
