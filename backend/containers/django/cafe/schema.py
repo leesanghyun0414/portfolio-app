@@ -50,8 +50,10 @@ class Query(ObjectType):
     def resolve_menu_by_category_id(root, info, category_id):
         return Menu.objects.select_related("category").filter(category=category_id)
 
-    def resolve_menu_by_id(root, info, menu_id: graphene.ID(), is_active):
-        return Menu.objects.get(pk=menu_id, is_active=is_active)
+    def resolve_menu_by_id(
+        root, info, menu_id: graphene.ID(), is_released: graphene.Boolean
+    ):
+        return Menu.objects.get(pk=menu_id, is_active=is_released)
 
     def resolve_all_category(root, info):
         return Category.get_category()
