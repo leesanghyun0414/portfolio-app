@@ -1,5 +1,9 @@
 <template>
-  <AppHeaderItem />
+  <header class="mb-10 h-20">
+    <nav class="h-full">
+      <AppHeaderItem />
+    </nav>
+  </header>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue"

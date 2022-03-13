@@ -16,11 +16,12 @@ export default defineComponent({
 <style lang="sass">
 
 #counter
-
-  align-items: center
-  margin-left: auto
-  margin-right: auto
-
+  padding-left: 1rem
+  padding-right: 1rem
+  //align-items: center
+  //margin-left: auto
+  //margin-right: auto
+  //max-width: 1536px
 
 img
   display: inline !important

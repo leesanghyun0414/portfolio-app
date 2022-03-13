@@ -38,6 +38,9 @@ class Query(ObjectType):
     menu_path = graphene.Field(MenuType, menu_id=graphene.ID(required=True))
     all_menu = graphene.List(MenuType)
     all_category = GenericScalar()
+    menu_by_category_id = graphene.List(
+        MenuType, category_id=graphene.ID(required=True)
+    )
     menu_by_id = graphene.Field(
         MenuType,
         menu_id=graphene.ID(required=True),
