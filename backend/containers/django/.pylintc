@@ -65,7 +65,7 @@ unsafe-load-any-extension=no
 # all. Valid levels: HIGH, INFERENCE, INFERENCE_FAILURE, UNDEFINED.
 confidence=
 
-# Disable the message, report, category or checker with the given id(s). You
+# Disable the message, report, parentCategories or checker with the given id(s). You
 # can either give multiple identifiers separated by comma (,) or put this
 # option multiple times (only on the command line, not in the configuration
 # file where it should appear only once). You can also use "--disable=all" to
@@ -163,7 +163,7 @@ disable=print-statement,
         C0116,
         C0115
 
-# Enable the message, report, category or checker with the given id(s). You can
+# Enable the message, report, parentCategories or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
@@ -174,7 +174,7 @@ enable=c-extension-no-member
 
 # Python expression which should return a score less than or equal to 10. You
 # have access to the variables 'error', 'warning', 'refactor', and 'convention'
-# which contain the number of messages in each category, as well as 'statement'
+# which contain the number of messages in each parentCategories, as well as 'statement'
 # which is the total number of statements analyzed. This score is used by the
 # global evaluation report (RP0004).
 evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)

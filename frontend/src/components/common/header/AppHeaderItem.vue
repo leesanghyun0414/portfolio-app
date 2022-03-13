@@ -1,7 +1,7 @@
 <template>
-  <div class="flex text-regal-blue items-center gap-5 font-bold uppercase p-6 mb-5 border-b-2 ">
+  <div class="flex mx-auto text-regal-blue gap-5 font-bold items-center uppercase  h-full">
     <div
-      class="mr-auto text-header-base lg:text-header-lg normal-case"
+      class="text-header-base lg:text-header-lg normal-case mr-auto"
     >
       <router-link
         :to="{name: 'HomePage'}"
@@ -11,7 +11,7 @@
     </div>
     <div
       v-for="headerItem in Object.values(HeaderItems)"
-      class=" text-lg hidden lg:text-xl sm:inline-flex text-indigo-900  "
+      class=" text-lg hidden lg:text-xl sm:inline-flex text-indigo-900 "
     >
       <p
         class="cursor-pointer hover:opacity-50"
@@ -24,7 +24,7 @@
       as="div"
       class="sm:hidden inline-block relative"
     >
-      <MenuButton class="w-10 h-10 inline-flex justify-end ">
+      <MenuButton class="w-10 h-10 inline-flex justify-center items-center ">
         <MenuIcon aria-hidden="true" />
       </MenuButton>
       <transition
@@ -62,6 +62,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue"
 import { MenuIcon } from "@heroicons/vue/solid"
 import { useRouter } from "vue-router"
 
+
 export default defineComponent({
   name: "AppHeaderItem"
   ,
@@ -73,7 +74,7 @@ export default defineComponent({
       switch(headerItemName) {
 
         case HeaderItems.Menu:
-          router.push({name:"MenuPage"})
+          router.push({name:"MenuCategory"})
           break
         case HeaderItems.Map:
           router.push({name:"MapPage"})
