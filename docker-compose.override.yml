@@ -11,7 +11,7 @@ services:
       - django_superuser_password
     env_file:
       - envs/dev/django/.env
-
+    restart: on-failure
     volumes:
       - ./backend/containers/django/blog:/usr/app/blog
       - ./backend/containers/django/.pylintc:/usr/app/.pylintc
@@ -42,6 +42,7 @@ services:
       - ./frontend/src/dist:/var/www/front
     depends_on:
       - django
+    restart: on-failure
 
 
 
@@ -73,6 +74,8 @@ services:
       - ./frontend/tailwind.config.js:/usr/app/tailwind.config.js
       - ./frontend/codegen.yml:/usr/app/codegen.yml
       - node_modules:/usr/app/node_modules
+    env_file:
+      - ./envs/dev/frontend/.env
 
 
 

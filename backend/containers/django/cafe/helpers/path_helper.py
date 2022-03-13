@@ -1,12 +1,20 @@
 import os
 
 
-def upload_path(menu_instance, filename):
-    category_dir_name = menu_instance.category.name.replace(" ", "_").lower()
+def upload_path(model_obj, filename):
+    obj_name = model_obj.__class__.__name__
+    if obj_name == "Menu":
+        category_dir_name = model_obj.category.name.replace(" ", "_").lower()
+        return os.path.join(
+            "images",
+            f"{model_obj.__class__.__name__.lower()}",
+            f"{category_dir_name}",
+            filename,
+        )
+    elif obj_name == "Category":
+        return os.path.join(
+            "images", "thumbnail", f"{model_obj.__class__.__name__.lower()}", filename
+        )
 
-    return os.path.join(
-        "images",
-        f"{menu_instance.__class__.__name__.lower()}",
-        f"{category_dir_name}",
-        filename,
-    )
+    else:
+        raise Exception("Unknown model object")

@@ -2,7 +2,7 @@ from django.db import models
 from treebeard.mp_tree import MP_Node
 
 from ..helpers import category_serialize
-
+from ..helpers.path_helper import upload_path
 from ..querysets import CategoryQuerySet
 from .common_info import CommonInfo
 
@@ -14,6 +14,8 @@ class Category(CommonInfo, MP_Node):
         verbose_name_plural = "カテゴリー"
 
     name = models.CharField(max_length=30)
+
+    image = models.ImageField(upload_to=upload_path, blank=True)
 
     categories = CategoryQuerySet.as_manager()
 
