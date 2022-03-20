@@ -7,14 +7,14 @@
     :src="ASSET_ROOT+menuInfo.image"
     />
     </div>
-    <div class="inline-grid md:gap-5 text-regal-blue  mx-auto md:mx-0 text-center md:text-left place-items-center md:justify-items-start">
+    <div class="inline-grid md:gap-5 text-regal-blue  mx-auto md:mx-0 text-center md:text-left place-items-center md:justify-items-start -mt-10 md:mt-0">
       <p class="md:font-extrabold font-bold lg:text-menu-name text-md-menuname md:text-md-menuname leading-[3.0rem]">
         {{ menuInfo.name }}
       </p>
-      <p class="md:text-calorie md:text-navbar-base text-2xl opacity-[.65] leading-3 -mt-6">
+      <p class="md:text-calorie md:text-navbar-base text-2xl opacity-[.65] leading-3 -mt-28 md:my-auto">
         {{ menuInfo.calorie }}cal
       </p>
-      <div class="flex gap-x-5  text-center mx-auto  md:m-0 -mt-6">
+      <div class="flex gap-x-5  text-center mx-auto  md:m-0 -mt-48">
         <p class="text-lg md:text-2xl font-bold border-solid border-2 border-regal-blue my-auto leading-3 md:leading-5 md:px-3 md:py-1 px-2 py-1">
           Hot
         </p>
@@ -22,7 +22,7 @@
           cold
         </p>
       </div>
-      <p class="md:text-md-menuname text-md-price mt-6 md:mt-auto">
+      <p class="md:text-md-menuname text-md-price -mt-32 md:mt-auto">
         ￥{{ menuInfo.price }}
       </p>
     </div>
