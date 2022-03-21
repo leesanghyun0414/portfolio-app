@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage.vue"
 import MenuPage from "../pages/MenuPage.vue"
 import MenuCategory from "../components/menu_category/MenuCategory.vue"
 import Menu from "../components/menu/Menu.vue"
+import MenuDetail from "../components/MenuDetail/MenuDetail.vue"
 
 const routes: RouteRecordRaw[] = [
   { path: "/", component: HomePage, name: "HomePage" },
@@ -27,9 +28,18 @@ const routes: RouteRecordRaw[] = [
         props: true,
         name: "Menu",
       },
+      {
+        path:"menuDetail/:menuId",
+        component: MenuDetail,
+        props:true,
+        name:"MenuDetail",
+      
+      },    
     ],
     name: "MenuPage",
   },
+
+
 ]
 
 export const router = createRouter({
