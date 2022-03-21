@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row gap-x-20">
+  <div class="flex flex-row md:gap-x-20">
     <MenuNavBar />
     <router-view />
   </div>
@@ -15,7 +15,6 @@ export default defineComponent({
   name: "MenuPage",
   components: {MenuNavBar}
   ,
-
 })
 </script>
 

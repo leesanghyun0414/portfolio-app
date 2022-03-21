@@ -13,6 +13,10 @@ module.exports = {
       xl: "1.25rem",
       "2xl": "1.5rem",
       "navbar-base":"2.2rem",
+      "md-menuname":"60px",
+      "md-price":"50px",
+      "menu-name":"5rem",
+      "calorie":"45px",
     },
     extend: {
       colors: {

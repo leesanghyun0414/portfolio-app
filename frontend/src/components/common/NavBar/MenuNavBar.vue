@@ -5,7 +5,7 @@
 
   <ul 
     v-else 
-    class="hidden md:grid md:gap-y-7 md:text-navbar-base lg:text-header-lg text-2xl text-regal-blue place-items-start text-left font-bold h-fit  "
+    class="hidden lg:grid lg:gap-y-7 md:text-navbar-base lg:text-header-lg text-2xl text-regal-blue place-items-start text-left font-bold h-fit  "
   >
     <NavBarList
       v-for="item in category"
