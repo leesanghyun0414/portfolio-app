@@ -2,3 +2,8 @@
 frontend/node_modules/
 frontend/yarn-error.log
 frontend/yarn.lock
+frontend/Dockerfile
+
+### BACKEND
+backend/containers/django/Dockerfile
+backend/containers/nginx/Dockerfile
