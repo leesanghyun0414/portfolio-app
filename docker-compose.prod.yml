@@ -4,26 +4,46 @@ services:
 
   django:
     container_name: django_prod
-
+    build:
+      target: prod_stage
+    env_file:
+      - envs/prod/django/.env
+    restart: on-failure
 
 
   nginx:
     container_name: nginx_prod
+    build:
+        target: nginx_prod
+        args:
+          - VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/
+          - VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql
     depends_on:
       - django
       - front
-
+    restart: on-failure
     volumes:
       - frontend:/var/www/front
 
   postgres:
     container_name: postgres_prod
+    env_file:
+      - envs/prod/database/.env.db
+    ports:
+      - "5432:5432"
 
   front:
     container_name: front_prod
     build:
       args:
-        - PRODUCTION=true
+        - PRODUCTION=1
+      target: prod-stage
+    tty: true
+
+
+    env_file:
+      - ./envs/prod/frontend/.env
+
     volumes:
       - frontend:/usr/app/dist
 

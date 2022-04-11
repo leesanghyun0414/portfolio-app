@@ -4,8 +4,9 @@ services:
 
   django:
     container_name: django_dev
-    expose:
-      - "8081"
+    build:
+      target: dev_stage
+
     secrets:
       - django_db_url
       - django_superuser_password
@@ -23,7 +24,6 @@ services:
       - ./frontend/schema.graphql:/usr/share/schema.graphql
 
 
-
   https-portal:
 
 
@@ -36,6 +36,8 @@ services:
 
   nginx:
     container_name: nginx_dev
+    build:
+      target: nginx
     ports:
       - "8080:80"
     volumes:
