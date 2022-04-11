@@ -27,6 +27,8 @@ django-cleanup = "*"
 required = "*"
 django-jazzmin = "*"
 django-debug-toolbar = "*"
+django-heroku = "*"
+whitenoise = "*"
 
 
 [requires]

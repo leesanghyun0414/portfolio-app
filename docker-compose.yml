@@ -28,8 +28,6 @@ services:
       context: .
       dockerfile: ./backend/containers/nginx/Dockerfile
     volumes:
-      - ./backend/containers/nginx/conf:/etc/nginx/conf.d
-      - ./backend/containers/nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./backend/containers/django/static:/var/www/static
       - ./backend/containers/django/media:/var/www/media
 

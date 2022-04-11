@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 import environ
+import django_heroku
 
 env = environ.Env()
 
@@ -26,9 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-)e7!sv0i%m%n**)fz#l4e3-1inu4z5&zh-em+z&nt(#!b0g%f_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get_value("DEBUG", bool)
+# DEBUG = env.get_value("DEBUG", bool)
+DEBUG = True
 
-ALLOWED_HOSTS = env.get_value("ALLOWED_HOSTS", list)
+ON_HEROKU = env.get_value("ON_HEROKU", bool)
+
+# ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -70,9 +74,10 @@ GRAPHQL_JWT = {
 }
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -101,22 +106,46 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.redirects.RedirectsPanel",
     "debug_toolbar.panels.profiling.ProfilingPanel",
 ]
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+#     "0.0.0.0"
+# ]
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "graphql_auth.backends.GraphQLAuthBackend",
 ]
 
-# cors-headers Settings
 CORS_ORIGIN_ALLOW_ALL = False
+
+# cors-headers Settings
 CORS_ORIGIN_WHITELIST = [
+    "https://squ-cafe.herokuapp.com",
+    "squ-cafe.herokuapp.com"
     "http://localhost:3000",
     "http://localhost:443",
     "https://localhost",
 ]
+
+# CORS_ALLOW_ORIGIN = [
+#     "https://squ-cafe.herokuapp.com",
+#
+# ]
+#
+# CORS_ALLOWED_ORIGINS = [
+#     "https://squ-cafe.herokuapp.com",
+#     "http://squ-cafe.herokuapp.com",
+#     "http://localhost:3000"
+# ]
+#
+# CORS_ALLOW_HEADERS = (
+#     'x-requested-with',
+#     'content-type',
+#     'accept',
+#     'origin',
+#     'authorization',
+#     'x-csrftoken'
+# )
 
 ROOT_URLCONF = "config.urls"
 
@@ -149,7 +178,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {"default": env.db()}
+DATABASES = {"default": env.db("LOCAL_DATABASE_URL")}
+
+if ON_HEROKU:
+    import dj_database_url
+
+    db_from_env = dj_database_url.config()
+    DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -198,3 +233,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+if ON_HEROKU:
+    django_heroku.settings(locals())
