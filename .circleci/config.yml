@@ -14,6 +14,6 @@ jobs:
     steps:
       - gh/setup
       - run:
-        command: |
-          gh pr create -B prod -t "test prod pl"
-        name: Create Pull Request For Production
+          command: |
+            gh pr create -B prod -t "test prod pl"
+          name: Create Pull Request For Production
