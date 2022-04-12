@@ -1,0 +1,19 @@
+version: 2.1
+orbs:
+  gh: circleci/github-cli@2.0
+jobs:
+  create-a-pr:
+    docker:
+      - image: 'cimg/base:stable'
+    context:
+      - GITHUB_TOKEN
+    filters:
+      branches:
+        only:
+          - master
+    steps:
+      - gh/setup
+      - run:
+        command: |
+          gh pr create -B prod -t "test prod pl"
+        name: Create Pull Request For Production
