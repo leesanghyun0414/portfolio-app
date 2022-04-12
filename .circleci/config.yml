@@ -24,7 +24,7 @@ jobs:
               git config --global user.email "test@test.gg"
               gh pr create -B prod -t "test prod pl"
           name: Create Pull Request For Production
-
+      - gh/clone
 
 
 
