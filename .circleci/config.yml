@@ -44,7 +44,7 @@ jobs:
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run:
           command: |
-            bash .circleci/setup_heroku.sh
+            bash ./.circleci/setup_heroku.sh
 
 
       - checkout
