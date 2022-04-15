@@ -9,3 +9,4 @@ machine api.heroku.com
 machine git.heroku.com
     login $HEROKU_EMAIL
     password $HEROKU_API_KEY
+EOF
