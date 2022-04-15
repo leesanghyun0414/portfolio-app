@@ -42,11 +42,11 @@ jobs:
     steps:
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      - run: |
-          heroku login \<< ANSWERS
-          $HEROKU_EMAIL
-          $HEROKU_PASSWD
-          ANSWERS
+      - run:
+        command: |
+          bash .circleci/setup_heroku.sh
+
+
       - checkout
       - run:
           command: |
