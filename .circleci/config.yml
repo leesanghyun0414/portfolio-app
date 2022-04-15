@@ -18,12 +18,6 @@ workflows:
                - HEROKU_PASSWD
                - DOCKERHUB_PASSWD
                - HEROKU_EMAIL
-
-
-
-
-
-
 jobs:
   create-a-pr:
     docker:
@@ -40,15 +34,14 @@ jobs:
   deploy:
     machine: true
     steps:
+      - checkout
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run:
-        command: |
-          bash ls .circleci
-          exit 0
+          command: |
+            chmod +x .circleci/setup_heroku.sh
+            .circleci/setup_heroku.sh
 
-
-      - checkout
 
       - run:
           command: |
@@ -61,6 +54,12 @@ jobs:
       - run:
           command: |
             heroku container:login
+            heroku login
+      - run:
+          command: |
+            echo "${CIRCLECI_BRANCH}"
+
+
       - run:
           command: |
               docker build \
@@ -71,18 +70,21 @@ jobs:
               docker build \
               -t registry.heroku.com/squ-cafe/web \
               --target nginx_prod \
+              --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
+              --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
               -f ./backend/containers/nginx/Dockerfile .
-          name: Build Prod backend, web Image
-      - run:
-          command: |
-            docker push registry.heroku.com/cafe-backend-app/web
-            docker push registry.heroku.com/squ-cafe/web
-          name: push Docker images to heroku registry
 
-      - run:
-          command: |
-            heroku container:release web -a squ-cafe
-            heroku container:release web -a cafe-backend-app
+          name: Build Prod backend, web Image
+      # - run:
+      #     command: |
+      #       docker push registry.heroku.com/cafe-backend-app/web
+      #       docker push registry.heroku.com/squ-cafe/web
+      #     name: push Docker images to heroku registry
+
+      # - run:
+      #     command: |
+      #       heroku container:release web -a squ-cafe
+      #       heroku container:release web -a cafe-backend-app
 
 
 
