@@ -17,6 +17,7 @@ workflows:
                - HEROKU_API_KEY
                - HEROKU_PASSWD
                - DOCKERHUB_PASSWD
+               - HEROKU_EMAIL
 
 
 
@@ -42,7 +43,10 @@ jobs:
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run: |
-          heroku login
+          heroku login << ANSWERS
+          $HEROKU_EMAIL
+          $HEROKU_PASSWD
+          ANSWERS
       - checkout
       - run:
           command: |
