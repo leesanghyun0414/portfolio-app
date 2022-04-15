@@ -49,6 +49,7 @@ jobs:
 
 
       - checkout
+
       - run:
           command: |
               if [[ $(command -v heroku) == "" ]]; then
