@@ -24,6 +24,7 @@ workflows:
 
 
 
+
 jobs:
   create-a-pr:
     docker:
@@ -40,15 +41,14 @@ jobs:
   deploy:
     machine: true
     steps:
+      - checkout
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run:
-        command: |
-          bash ls .circleci
-          exit 0
+          command: |
+            chmod +x .circleci/setup_heroku.sh
+            .circleci/setup_heroku.sh
 
-
-      - checkout
 
       - run:
           command: |
@@ -61,6 +61,7 @@ jobs:
       - run:
           command: |
             heroku container:login
+            heroku login
       - run:
           command: |
               docker build \
