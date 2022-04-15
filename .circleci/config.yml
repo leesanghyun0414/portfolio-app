@@ -43,7 +43,7 @@ jobs:
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run: |
-          heroku login << ANSWERS
+          heroku login \<< ANSWERS
           $HEROKU_EMAIL
           $HEROKU_PASSWD
           ANSWERS
