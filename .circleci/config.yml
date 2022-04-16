@@ -66,6 +66,7 @@ jobs:
 
       - run:
           command: |
+          
               if [[ $(command -v heroku) == "" ]]; then
                 curl https://cli-assets.heroku.com/install.sh | sh
               else
