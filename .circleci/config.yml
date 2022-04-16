@@ -2,7 +2,6 @@ version: 2.1
 orbs:
   gh: circleci/github-cli@2.0
   heroku: circleci/heroku@1.2.6
-  win: circleci/windows@2.2.0
 workflows:
   gh-workflow:
     jobs:
@@ -13,9 +12,12 @@ workflows:
               branches:
                 only:
                   - master
-      - deploy:
-            context:
-               - DOCKERHUB_PASSWD
+      - deploy-heroku:
+            filters:
+              branches:
+                only:
+                  - prod
+
 
 jobs:
   create-a-pr:
@@ -26,73 +28,51 @@ jobs:
       - gh/setup
       - run:
           command: |
-              git config --global user.name "circleci"
-              git config --global user.email "test@test.gg"
-              gh pr create -B prod -t "test prod pl" --body "Pull request body"
+              # git config --global user.name "circleci"
+              # git config --global user.email "test@test.gg"
+              gh pr create -B prod -t "${CIRCLE_BRANCH} prod pl" --body "Pull request body"
           name: Create Pull Request For Production
-  deploy:
+  deploy-heroku:
     machine:
       image: ubuntu-2004:current
 
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 20.10.12
-      # - run: 
-      #     command: |
-      #       if [[ $HEROKU_API_KEY == "" ]]; then
-      #         echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
-      #         echo "This can be found by running the `heroku auth:token` command locally."
-      #         exit 1
-      #       else
-      #         echo "Heroku API key found."
-
-      #         heroku auth:whoami
-      #       fi
-      #     name: Verify HEROKU_API_KEY is set
-
-      - run: 
-          command: |
-            #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
-            # echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      # - run:  
-      #     command: |
-      #       chmod +x .circleci/setup_heroku.sh
-      #       .circleci/setup_heroku.sh
-
-
-
-      - run:
-          command: |
-
-              if [[ $(command -v heroku) == "" ]]; then
-                curl https://cli-assets.heroku.com/install.sh | sh
-              else
-                echo "Heroku is alread installed. No operation was performed."
-              fi
-              
-              if [[ $HEROKU_API_KEY == "" ]]; then
-                echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
-                echo "This can be found by running the `heroku auth:token` command locally."
-                exit 1
-              else
-                echo "Heroku API key found."
-
-                heroku auth:whoami
-              fi
-          name: Insatll Heroku CLI (If not installed)
-      - run:
-          command: |
-            echo ${HEROKU_API_KEY}
-            # heroku login
-            heroku container:login
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
             echo "$(ls -a .)"
             echo "$(pwd)"
             echo "$(docker --version)"
-            
+          name: Informations For CI
+      # - run:
+      #     command: |
+      #       #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com
+      #       # echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
+      - run:
+          command: |
+              if [[ $(command -v heroku) == "" ]]; then
+                curl https://cli-assets.heroku.com/install.sh | sh
+              else
+                echo "Heroku is alread installed. No operation was performed."
+              fi
+          name: Insatll Heroku CLI (If not installed)
+      - run:
+          command: |
+              if [[ $HEROKU_API_KEY == "" ]]; then
+                echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
+                echo "This can be found by running the `heroku auth:token` or `heroku authorizations:create` command locally."
+                exit 1
+              else
+                echo "Heroku API key found."
+
+                heroku auth:whoami
+              fi
+          name: Check authentication
+      - run:
+          command: |
+            heroku container:login
+          name: Log in Heroku container
 
 
       - run:
@@ -108,7 +88,6 @@ jobs:
               --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
               --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
               -f ./backend/containers/nginx/Dockerfile .
-              # docker build -t registry.heroku.com/squ-cafe/web --target nginx_prod --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql -f ./backend/containers/nginx/Dockerfile .
 
           name: Build Prod backend, web Image
       - run:
@@ -117,15 +96,14 @@ jobs:
             docker push registry.heroku.com/squ-cafe/web
           name: push Docker images to heroku registry
 
-      # - run:
-      #     command: |
-      #       heroku container:release web -a squ-cafe
-      #       heroku container:release web -a cafe-backend-app
+      - run:
+          command: |
+            heroku container:release web -a squ-cafe
+            heroku container:release web -a cafe-backend-app
 
 
 
 
-          
-        
 
-  
+
+
