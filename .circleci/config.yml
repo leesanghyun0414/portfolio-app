@@ -62,17 +62,18 @@ jobs:
 
       - run:
           command: |
-              docker build \
-              -t registry.heroku.com/cafe-backend-app/web \
-              --target prod_stage \
-              -f ./backend/containers/django/Dockerfile .
+              # docker build \
+              # -t registry.heroku.com/cafe-backend-app/web \
+              # --target prod_stage \
+              # -f ./backend/containers/django/Dockerfile .
 
-              docker build \
-              -t registry.heroku.com/squ-cafe/web \
-              --target nginx_prod \
-              --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
-              --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
-              -f ./backend/containers/nginx/Dockerfile .
+              # docker build \
+              # -t registry.heroku.com/squ-cafe/web \
+              # --target nginx_prod \
+              # --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
+              # --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
+              # -f ./backend/containers/nginx/Dockerfile .
+              docker build -t registry.heroku.com/squ-cafe/web --target nginx_prod --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql -f ./backend/containers/nginx/Dockerfile .
 
           name: Build Prod backend, web Image
       # - run:
