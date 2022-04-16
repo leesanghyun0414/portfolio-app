@@ -15,10 +15,8 @@ workflows:
                   - master
       - deploy:
             context:
-               - HEROKU_API_KEY
-               - HEROKU_PASSWD
                - DOCKERHUB_PASSWD
-               - HEROKU_EMAIL
+
 jobs:
   create-a-pr:
     docker:
@@ -40,27 +38,54 @@ jobs:
       - checkout
       # - setup_remote_docker:
       #     version: 20.10.12
-      - run: |
-         echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      - run:  
+      # - run: 
+      #     command: |
+      #       if [[ $HEROKU_API_KEY == "" ]]; then
+      #         echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
+      #         echo "This can be found by running the `heroku auth:token` command locally."
+      #         exit 1
+      #       else
+      #         echo "Heroku API key found."
+
+      #         heroku auth:whoami
+      #       fi
+      #     name: Verify HEROKU_API_KEY is set
+
+      - run: 
           command: |
-            chmod +x .circleci/setup_heroku.sh
-            .circleci/setup_heroku.sh
+            #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
+            # echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
+      # - run:  
+      #     command: |
+      #       chmod +x .circleci/setup_heroku.sh
+      #       .circleci/setup_heroku.sh
+
 
 
       - run:
           command: |
+
               if [[ $(command -v heroku) == "" ]]; then
                 curl https://cli-assets.heroku.com/install.sh | sh
               else
                 echo "Heroku is alread installed. No operation was performed."
               fi
+              
+              if [[ $HEROKU_API_KEY == "" ]]; then
+                echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
+                echo "This can be found by running the `heroku auth:token` command locally."
+                exit 1
+              else
+                echo "Heroku API key found."
+
+                heroku auth:whoami
+              fi
           name: Insatll Heroku CLI (If not installed)
       - run:
           command: |
             echo ${HEROKU_API_KEY}
-            # heroku container:login
-            heroku login
+            # heroku login
+            heroku container:login
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
