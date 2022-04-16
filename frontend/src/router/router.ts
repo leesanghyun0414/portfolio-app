@@ -16,26 +16,26 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/menu",
     component: MenuPage,
-    // children: [
-    //   {
-    //     path: "",
-    //     component: MenuCategory,
-    //     name: "MenuCategory",
-    //   },
-    //   {
-    //     path: "list/:menuName",
-    //     component: Menu,
-    //     props: true,
-    //     name: "Menu",
-    //   },
-    //   {
-    //     path:"menuDetail/:menuId",
-    //     component: MenuDetail,
-    //     props:true,
-    //     name:"MenuDetail",
-    //
-    //   },
-    // ],
+    children: [
+      {
+        path: "",
+        component: MenuCategory,
+        name: "MenuCategory",
+      },
+      {
+        path: "list/:menuName",
+        component: Menu,
+        props: true,
+        name: "Menu",
+      },
+      {
+        path:"menuDetail/:menuId",
+        component: MenuDetail,
+        props:true,
+        name:"MenuDetail",
+
+      },
+    ],
     name: "MenuPage",
   },
 

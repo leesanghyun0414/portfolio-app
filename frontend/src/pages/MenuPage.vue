@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row md:gap-x-20">
-<!--    <MenuNavBar />-->
-<!--    <router-view />-->
+    <MenuNavBar />
+    <router-view />
   </div>
 </template>
 
@@ -11,16 +11,16 @@
 
 
 
-<!--<script lang="ts">-->
+<script lang="ts">
 
-<!--import {defineComponent} from "vue"-->
+import {defineComponent} from "vue"
 
-<!--import MenuNavBar from "../components/common/NavBar/MenuNavBar.vue"-->
+import MenuNavBar from "../components/common/NavBar/MenuNavBar.vue"
 
-<!--export default defineComponent({-->
-<!--  name: "MenuPage",-->
-<!--  components: {MenuNavBar}-->
-<!--  ,-->
-<!--})-->
-<!--</script>-->
+export default defineComponent({
+  name: "MenuPage",
+  components: {MenuNavBar}
+  ,
+})
+</script>
 

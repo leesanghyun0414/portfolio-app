@@ -1,13 +1,6 @@
 #!/usr/bin/env sh
 
 
-ls
-
-cat src/router/router.ts
-
-cat src/pages/MenuPage.vue
-
-ls src/pages/
 
 if [ "$PRODUCTION" -eq 1 ]
 then
