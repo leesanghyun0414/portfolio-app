@@ -33,9 +33,13 @@ jobs:
               gh pr create -B prod -t "test prod pl" --body "Pull request body"
           name: Create Pull Request For Production
   deploy:
-    executor: win/default
+    machine: true
+    
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.11
+          docker_layer_caching: true
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run:
@@ -61,6 +65,7 @@ jobs:
             echo "${CIRCLE_BRANCH}"
             echo "$(ls .)"
             echo "$(pwd)"
+            echo "$(docker --version)"
 
 
       - run:
