@@ -1,9 +1,13 @@
 <template>
   <div class="flex flex-row md:gap-x-20">
-    <MenuNavBar />
-<!--    <router-view />-->
+<!--    <MenuNavBar />-->
+    <router-view />
   </div>
 </template>
+
+
+
+
 
 <script lang="ts">
 
