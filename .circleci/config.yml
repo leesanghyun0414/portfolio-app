@@ -40,9 +40,24 @@ jobs:
       - checkout
       # - setup_remote_docker:
       #     version: 20.10.12
-      - run: |
-         docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
-        #  echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
+      - run: 
+          command: |
+            if [[ $HEROKU_API_KEY == "" ]]; then
+              echo "No Heroku API key set, please set the HEROKU_API_KEY environment variable."
+              echo "This can be found by running the `heroku auth:token` command locally."
+              exit 1
+            else
+              echo "Heroku API key found."
+
+              heroku auth:whoami
+
+            fi
+          name: Verify HEROKU_API_KEY is set
+
+      - run: 
+          command: |
+            #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
+            echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       - run:  
           command: |
             chmod +x .circleci/setup_heroku.sh
