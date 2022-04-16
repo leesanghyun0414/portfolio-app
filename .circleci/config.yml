@@ -33,7 +33,8 @@ jobs:
               gh pr create -B prod -t "test prod pl" --body "Pull request body"
           name: Create Pull Request For Production
   deploy:
-    machine: true
+    machine:
+      image: ubuntu-2004:current
 
     steps:
       - checkout
