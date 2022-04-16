@@ -57,16 +57,16 @@ jobs:
           command: |
             #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
             echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      - run:  
-          command: |
-            chmod +x .circleci/setup_heroku.sh
-            .circleci/setup_heroku.sh
+      # - run:  
+      #     command: |
+      #       chmod +x .circleci/setup_heroku.sh
+      #       .circleci/setup_heroku.sh
 
 
 
       - run:
           command: |
-          
+
               if [[ $(command -v heroku) == "" ]]; then
                 curl https://cli-assets.heroku.com/install.sh | sh
               else
