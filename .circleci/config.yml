@@ -74,16 +74,16 @@ jobs:
               --target nginx_prod \
               -f ./backend/containers/nginx/Dockerfile .
           name: Build Prod backend, web Image
-      - run:
-          command: |
-            docker push registry.heroku.com/cafe-backend-app/web
-            docker push registry.heroku.com/squ-cafe/web
-          name: push Docker images to heroku registry
+      # - run:
+      #     command: |
+      #       docker push registry.heroku.com/cafe-backend-app/web
+      #       docker push registry.heroku.com/squ-cafe/web
+      #     name: push Docker images to heroku registry
 
-      - run:
-          command: |
-            heroku container:release web -a squ-cafe
-            heroku container:release web -a cafe-backend-app
+      # - run:
+      #     command: |
+      #       heroku container:release web -a squ-cafe
+      #       heroku container:release web -a cafe-backend-app
 
 
 
