@@ -84,7 +84,7 @@ jobs:
       - run:
           command: |
             echo ${HEROKU_API_KEY}
-            heroku login
+            # heroku login
             heroku container:login
       - run:
           command: |
