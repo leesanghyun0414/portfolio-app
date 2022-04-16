@@ -59,6 +59,7 @@ jobs:
           command: |
             echo "${CIRCLE_BRANCH}"
             echo "$(ls .)"
+            echo "$(pwd)"
 
 
       - run:
