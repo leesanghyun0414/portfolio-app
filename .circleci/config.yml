@@ -58,6 +58,7 @@ jobs:
           name: Insatll Heroku CLI (If not installed)
       - run:
           command: |
+            echo ${HEROKU_API_KEY}
             # heroku container:login
             heroku login
       - run:
