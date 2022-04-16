@@ -18,13 +18,6 @@ workflows:
                - HEROKU_PASSWD
                - DOCKERHUB_PASSWD
                - HEROKU_EMAIL
-
-
-
-
-
-
-
 jobs:
   create-a-pr:
     docker:
@@ -72,7 +65,10 @@ jobs:
               docker build \
               -t registry.heroku.com/squ-cafe/web \
               --target nginx_prod \
+              --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
+              --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
               -f ./backend/containers/nginx/Dockerfile .
+
           name: Build Prod backend, web Image
       # - run:
       #     command: |
