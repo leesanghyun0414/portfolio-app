@@ -57,7 +57,8 @@ jobs:
             heroku login
       - run:
           command: |
-            echo "${CIRCLECI_BRANCH}"
+            echo "${CIRCLE_BRANCH}"
+            echo "$(ls .)"
 
 
       - run:
