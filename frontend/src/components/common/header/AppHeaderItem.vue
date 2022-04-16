@@ -25,7 +25,7 @@
       class="sm:hidden inline-block relative"
     >
       <MenuButton class="w-10 h-10 inline-flex justify-center items-center ">
-        <MenuIcon aria-hidden="true" />
+        <!--        <MenuIcon aria-hidden="true" />-->
       </MenuButton>
       <transition
         enter-active-class="transition duration-100 ease-out"
@@ -83,7 +83,7 @@ export default defineComponent({
     }
 
     return {
-    handleHeaderItemClick: handleHeaderItemClick,HeaderItems
+    handleHeaderItemClick: handleHeaderItemClick,HeaderItems, MenuIcon
     }
   }
 })
