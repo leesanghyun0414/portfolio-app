@@ -59,8 +59,8 @@ jobs:
       - run:
           command: |
             echo ${HEROKU_API_KEY}
-            # heroku container:login
-            heroku login
+            heroku container:login
+            # heroku login
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
