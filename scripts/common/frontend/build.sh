@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 
 
+ls
+
+cat src/router/router.ts
+
 
 if [ "$PRODUCTION" -eq 1 ]
 then
