@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row md:gap-x-20">
     <MenuNavBar />
-    <router-view />
+<!--    <router-view />-->
   </div>
 </template>
 
