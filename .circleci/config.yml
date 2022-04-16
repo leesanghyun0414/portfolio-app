@@ -15,10 +15,8 @@ workflows:
                   - master
       - deploy:
             context:
-               - HEROKU_API_KEY
-               - HEROKU_PASSWD
                - DOCKERHUB_PASSWD
-               - HEROKU_EMAIL
+
 jobs:
   create-a-pr:
     docker:
@@ -56,7 +54,7 @@ jobs:
       - run: 
           command: |
             #  docker login -u _ -p $HEROKU_API_KEY registry.heroku.com 
-            echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
+            # echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
       # - run:  
       #     command: |
       #       chmod +x .circleci/setup_heroku.sh
