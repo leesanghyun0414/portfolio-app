@@ -22,6 +22,7 @@ COPY frontend .
 RUN ["/usr/app/build.sh"]
 
 
+
 FROM node:${NODE_VERSION} as dev-stage
 
 WORKDIR /usr/app
@@ -44,7 +45,7 @@ FROM node:${NODE_VERSION} as prod-stage
 WORKDIR /usr/app
 
 # BUILDED APP
-COPY --from=build-stage /usr/app/dist /usr/app/dist
+COPY --from=build-stage /usr/app/src/dist /usr/app/dist
 
 
 
