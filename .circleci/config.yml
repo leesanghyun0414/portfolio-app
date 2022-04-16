@@ -56,10 +56,10 @@ jobs:
                 echo "Heroku is alread installed. No operation was performed."
               fi
           name: Insatll Heroku CLI (If not installed)
-      # - run:
-      #     command: |
-      #       heroku container:login
-      #       heroku login
+      - run:
+          command: |
+            # heroku container:login
+            heroku login
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
