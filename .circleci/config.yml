@@ -60,7 +60,7 @@ jobs:
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
-            echo "$(ls .)"
+            echo "$(ls -a .)"
             echo "$(pwd)"
             echo "$(docker --version)"
 
