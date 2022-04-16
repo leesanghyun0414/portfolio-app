@@ -33,13 +33,16 @@ jobs:
               gh pr create -B prod -t "test prod pl" --body "Pull request body"
           name: Create Pull Request For Production
   deploy:
-    machine: true
+    machine:
+      image: ubuntu-2004:current
 
     steps:
       - checkout
+      # - setup_remote_docker:
+      #     version: 20.10.12
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      - run:
+      - run:  
           command: |
             chmod +x .circleci/setup_heroku.sh
             .circleci/setup_heroku.sh
@@ -53,39 +56,41 @@ jobs:
                 echo "Heroku is alread installed. No operation was performed."
               fi
           name: Insatll Heroku CLI (If not installed)
-      # - run:
-      #     command: |
-      #       heroku container:login
-      #       heroku login
+      - run:
+          command: |
+            echo ${HEROKU_API_KEY}
+            # heroku container:login
+            heroku login
       - run:
           command: |
             echo "${CIRCLE_BRANCH}"
-            echo "$(ls .)"
+            echo "$(ls -a .)"
             echo "$(pwd)"
             echo "$(docker --version)"
+            
 
 
       - run:
           command: |
-              # docker build \
-              # -t registry.heroku.com/cafe-backend-app/web \
-              # --target prod_stage \
-              # -f ./backend/containers/django/Dockerfile .
+              docker build \
+              -t registry.heroku.com/cafe-backend-app/web \
+              --target prod_stage \
+              -f ./backend/containers/django/Dockerfile .
 
-              # docker build \
-              # -t registry.heroku.com/squ-cafe/web \
-              # --target nginx_prod \
-              # --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
-              # --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
-              # -f ./backend/containers/nginx/Dockerfile .
-              docker build -t registry.heroku.com/squ-cafe/web --target nginx_prod --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql -f ./backend/containers/nginx/Dockerfile .
+              docker build \
+              -t registry.heroku.com/squ-cafe/web \
+              --target nginx_prod \
+              --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ \
+              --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql \
+              -f ./backend/containers/nginx/Dockerfile .
+              # docker build -t registry.heroku.com/squ-cafe/web --target nginx_prod --build-arg VITE_ASSET_ROOT=https://cafe-backend-app.herokuapp.com/media/ --build-arg VITE_API_SERVER=https://cafe-backend-app.herokuapp.com/graphql -f ./backend/containers/nginx/Dockerfile .
 
           name: Build Prod backend, web Image
-      # - run:
-      #     command: |
-      #       docker push registry.heroku.com/cafe-backend-app/web
-      #       docker push registry.heroku.com/squ-cafe/web
-      #     name: push Docker images to heroku registry
+      - run:
+          command: |
+            docker push registry.heroku.com/cafe-backend-app/web
+            docker push registry.heroku.com/squ-cafe/web
+          name: push Docker images to heroku registry
 
       # - run:
       #     command: |

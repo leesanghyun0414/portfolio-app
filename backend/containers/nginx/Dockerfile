@@ -33,14 +33,14 @@ ARG PRODUCTION=1
 
 WORKDIR /usr/app
 
-# PACKAGE FILE
-COPY frontend/package*.json .
+## PACKAGE FILE
+#COPY frontend/package*.json .
+COPY frontend .
 
 # PACKAGE INSTALLER
 COPY scripts/common/frontend/build.sh /usr/app/build.sh
 RUN chmod 777 build.sh
 
-COPY frontend .
 
 RUN ["/usr/app/build.sh"]
 
