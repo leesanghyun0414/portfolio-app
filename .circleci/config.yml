@@ -57,6 +57,11 @@ jobs:
             heroku login
       - run:
           command: |
+            echo "${CIRCLECI_BRANCH}"
+
+
+      - run:
+          command: |
               docker build \
               -t registry.heroku.com/cafe-backend-app/web \
               --target prod_stage \
