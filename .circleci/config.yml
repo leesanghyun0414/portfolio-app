@@ -37,9 +37,11 @@ jobs:
 
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.12
       - run: |
          echo "$DOCKERHUB_PASSWD" | docker login --username leesanghyun --password-stdin
-      - run:
+      - run:  
           command: |
             chmod +x .circleci/setup_heroku.sh
             .circleci/setup_heroku.sh
