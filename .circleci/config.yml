@@ -50,7 +50,6 @@ jobs:
               echo "Heroku API key found."
 
               heroku auth:whoami
-
             fi
           name: Verify HEROKU_API_KEY is set
 
