@@ -12,6 +12,7 @@ workflows:
               branches:
                 only:
                   - master
+
       - deploy-heroku:
             filters:
               branches:
@@ -100,6 +101,7 @@ jobs:
           command: |
             heroku container:release web -a squ-cafe
             heroku container:release web -a cafe-backend-app
+
 
 
 
