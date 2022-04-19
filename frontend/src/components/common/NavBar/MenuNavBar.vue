@@ -28,7 +28,7 @@ export default defineComponent({
   setup() {
     const { result, loading } = useQuery(GET_ALLCATEGORY)
     const category = useResult(result, null, (data) => data.allCategory)
-  console.log(category)
+
     return {
       result,
       category,

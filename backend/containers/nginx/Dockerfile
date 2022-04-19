@@ -33,14 +33,14 @@ ARG PRODUCTION=1
 
 WORKDIR /usr/app
 
-# PACKAGE FILE
-COPY frontend/package*.json .
+## PACKAGE FILE
+#COPY frontend/package*.json .
+COPY frontend .
 
 # PACKAGE INSTALLER
 COPY scripts/common/frontend/build.sh /usr/app/build.sh
 RUN chmod 777 build.sh
 
-COPY frontend .
 
 RUN ["/usr/app/build.sh"]
 
@@ -65,7 +65,7 @@ COPY --from=build-stage /usr/app/src/dist /var/www/front
 
 
 # Heroku not support bind port, define $PORT to synchronous port.
-# For container stopping, add config daemon off.
+# For container stopping solution, add config daemon off.
 CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
 

@@ -2,7 +2,7 @@
 <template>
   <li>
     <div>
-      <router-link :to="{name:'Menu',params:{menuName:childCategoryItem.data.name.replace(/\s+/g, '')}}">
+      <router-link :to="{name:'Menu',params:{menuName:childCategoryItem.data.name.replace(/\s+/g, ''), categoryId:childCategoryItem.id}}">
         {{ childCategoryItem.data.name }}
       </router-link>
     </div>

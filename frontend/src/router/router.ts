@@ -33,8 +33,8 @@ const routes: RouteRecordRaw[] = [
         component: MenuDetail,
         props:true,
         name:"MenuDetail",
-      
-      },    
+
+      },
     ],
     name: "MenuPage",
   },
