@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 isort = "==5.9.3"
 pylint = "==2.10.2"
-black = "==21.8b0"
+black = "==22.3.0"
 coverage = "*"
 factory-boy = "*"
 pytest = "*"
@@ -29,6 +29,7 @@ django-jazzmin = "*"
 django-debug-toolbar = "*"
 django-heroku = "*"
 whitenoise = "*"
+django-cloudinary-storage = "==0.3.0"
 
 
 [requires]
