@@ -104,6 +104,5 @@ class ToppingAdmin(admin.ModelAdmin):
     form = ToppingForm
 
 
-
 admin.site.register(Category, MyAdmin)
 admin.site.register(Menu, MenuAdmin)

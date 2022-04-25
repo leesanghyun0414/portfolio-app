@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-import environ
 import django_heroku
+import environ
 
 env = environ.Env()
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
     "blog.apps.BlogConfig",
     "cafe.apps.CafeConfig",
     "django_cleanup.apps.CleanupConfig",
@@ -75,7 +77,7 @@ GRAPHQL_JWT = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -121,31 +123,10 @@ CORS_ORIGIN_ALLOW_ALL = False
 # cors-headers Settings
 CORS_ORIGIN_WHITELIST = [
     "https://squ-cafe.herokuapp.com",
-    "squ-cafe.herokuapp.com"
     "http://localhost:3000",
     "http://localhost:443",
     "https://localhost",
 ]
-
-# CORS_ALLOW_ORIGIN = [
-#     "https://squ-cafe.herokuapp.com",
-#
-# ]
-#
-# CORS_ALLOWED_ORIGINS = [
-#     "https://squ-cafe.herokuapp.com",
-#     "http://squ-cafe.herokuapp.com",
-#     "http://localhost:3000"
-# ]
-#
-# CORS_ALLOW_HEADERS = (
-#     'x-requested-with',
-#     'content-type',
-#     'accept',
-#     'origin',
-#     'authorization',
-#     'x-csrftoken'
-# )
 
 ROOT_URLCONF = "config.urls"
 
@@ -236,3 +217,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 if ON_HEROKU:
     django_heroku.settings(locals())
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": "dmqkcg70e",
+        "API_KEY": env.get_value("CLOUDINARY_API_KEY"),
+        "API_SECRET": env.get_value("CLOUDINARY_SECRET_KEY"),
+    }
