@@ -17,7 +17,6 @@ class MenuType(DjangoObjectType):
     class Meta:
         model = Menu
         fields = (
-
             "name",
             "calorie",
             "image",

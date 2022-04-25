@@ -8,8 +8,6 @@ from .common_info import CommonInfo
 
 
 class Menu(CommonInfo, models.Model):
-
-
     class Meta:
         db_table = "cafe_menu"
         constraints = [
