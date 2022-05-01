@@ -1,15 +1,18 @@
 <template>
   <AppHeader />
   <router-view />
+  <AppFooter />
 </template>
 
 <script lang="ts">
 import {defineComponent} from "vue"
 import AppHeader from "./components/common/header/AppHeader.vue"
+import AppFooter from "./components/common/footer/AppFooter.vue"
 
 export default defineComponent({
   name: "App",
-  components: { AppHeader },
+  components: { AppHeader, AppFooter },
+  
 })
 </script>
 
