@@ -3,9 +3,11 @@
 <template>
   <div class="grid gap-x-5 grid-rows-2 md:grid-cols-2  lg:grid-cols-2   grid-cols-none lg:grid-rows-none  lg:gap-x-10 mx-auto lg:mx-0 ">
     <div>
-    <img class="w-full h-96 md:h-[26rem] lg:h-[29rem] min-h-40 "
-    :src="ASSET_ROOT+menuInfo.image"
-    />
+      <img
+        class="w-full h-96 md:h-[26rem] lg:h-[29rem] min-h-40 "
+        :src="ASSET_ROOT+menuInfo.image"
+        alt="Image"
+      >
     </div>
     <div class="inline-grid md:gap-5 text-regal-blue  mx-auto md:mx-0 text-center md:text-left place-items-center md:justify-items-start -mt-10 md:mt-0">
       <p class="md:font-extrabold font-bold lg:text-menu-name text-md-menuname md:text-md-menuname leading-[3.0rem]">
@@ -32,7 +34,7 @@
 
 <script lang="ts">
 import { useQuery, useResult } from "@vue/apollo-composable"
-import { defineComponent, watch } from "vue"
+import { defineComponent } from "vue"
 import { MENU_BY_ID } from "../../api/graphql/querys"
 import { ASSET_ROOT } from "../../config/api_roots"
 
@@ -46,7 +48,7 @@ props:{
 },
 
 setup(props) {
-  const {result, error} = useQuery(MENU_BY_ID,{menuId:props.menuId})
+  const {result} = useQuery(MENU_BY_ID,{menuId:props.menuId})
   const menuInfo = useResult(result,null, (data) => data.menuById)
   
 
