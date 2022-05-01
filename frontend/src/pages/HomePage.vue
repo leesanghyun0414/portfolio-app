@@ -1,7 +1,7 @@
 <template>
   <router-view />
 
-  <div class="grid gap-y-4 max-w-7xl text-regal-blue font-medium tracking-wider text-base md:text-2xl">
+  <div class="grid gap-y-4 max-w-[96rem] text-regal-blue font-medium tracking-wider text-base md:text-2xl">
     <div class="hidden md:inline-block">
       <img
         src="../assets/coffeshop_top_imagepicture.jpg"
@@ -30,7 +30,7 @@
         </p>
       </div>
     </div>
-    <div class="inline-grid grid-rows-none grid-cols-5 m-10 gap-5 place-items-center">
+    <div class="inline-grid cursor-pointer grid-rows-none grid-cols-5 m-10 gap-5 place-items-center">
       <img
         src="../assets/wifi.png"
         alt="wifi"
