@@ -1,7 +1,11 @@
 <template>
-  <AppHeader />
-  <router-view />
-  <AppFooter />
+
+  <div class="flex flex-col min-h-screen gap-y-10">
+    <AppHeader />
+    <router-view />
+    <AppFooter />
+  </div>
+
 </template>
 
 <script lang="ts">
@@ -12,19 +16,16 @@ import AppFooter from "./components/common/footer/AppFooter.vue"
 export default defineComponent({
   name: "App",
   components: { AppHeader, AppFooter },
-  
 })
 </script>
 
 <style lang="sass">
 
 #counter
-  padding-left: 1rem
-  padding-right: 1rem
-  //align-items: center
-  //margin-left: auto
-  //margin-right: auto
-  //max-width: 1536px
+
+  margin-left: auto
+  margin-right: auto
+  max-width: 1536px
 
 img
   display: inline !important

@@ -10,7 +10,10 @@ export const GET_ALLCATEGORY: DocumentNode = gql`
 export const GET_MENU_BY_CATEGORY_ID: DocumentNode = gql`
   query getMenuByCategoryId($categoryId: ID!) {
     menuByCategoryId(categoryId: $categoryId) {
+      menuId
       name
+      image
+        
     }
   }
 `
