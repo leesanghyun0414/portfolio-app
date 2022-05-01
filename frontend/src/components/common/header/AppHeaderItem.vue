@@ -25,7 +25,7 @@
       class="sm:hidden inline-block relative"
     >
       <MenuButton class="w-10 h-10 inline-flex justify-center items-center ">
-        <!--        <MenuIcon aria-hidden="true" />-->
+        <MenuIcon aria-hidden="true" />
       </MenuButton>
       <transition
         enter-active-class="transition duration-100 ease-out"
@@ -36,7 +36,7 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="flex flex-col gap-y-6 justify-items-end p-2 right-0 absolute  bg-white origin-top-right divide-y divide-gray-100 shadow-lg rounded-md ring-1 ring-black ring-opacity-5"
+          class="flex flex-col gap-y-6  p-5 right-0 fixed bg-white origin-top-right divide-y divide-gray-100 shadow-lg rounded-md ring-1 ring-black ring-opacity-5 w-56 h-full"
         >
           <MenuItem
             v-for="headerItem in Object.values(HeaderItems)"
