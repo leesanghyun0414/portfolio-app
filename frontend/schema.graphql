@@ -12,6 +12,7 @@ type CategoryType {
 scalar GenericScalar
 
 type MenuType {
+  menuId: ID!
   name: String!
   calorie: Int!
   price: Int!

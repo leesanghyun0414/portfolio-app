@@ -41,7 +41,7 @@ export default defineComponent({
   props: {
     children: {
       type: Object,
-      required: true
+      required: false
     }
 
   }

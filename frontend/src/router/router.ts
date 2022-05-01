@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
         name: "MenuCategory",
       },
       {
-        path: "list/:menuName",
+        path: "list/:menuName/:categoryId",
         component: Menu,
         props: true,
         name: "Menu",
