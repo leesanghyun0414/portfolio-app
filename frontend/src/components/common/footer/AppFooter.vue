@@ -1,6 +1,6 @@
 <template>
-  <footer class="flex flex-col bg-regal-blue text-white place-items-center py-10">
-    <div class="w-ful ">
+  <footer class=" flex mx-[calc(50%-50vw)] mt-auto flex-col bg-regal-blue text-white place-items-center py-10">
+    <div>
       <img
         src="/assets/footerlogo.png"
         alt="footerlogo"
