@@ -1,9 +1,11 @@
 <template>
+
   <div class="flex flex-col min-h-screen gap-y-10">
     <AppHeader />
     <router-view />
     <AppFooter />
   </div>
+
 </template>
 
 <script lang="ts">
