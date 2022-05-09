@@ -27,8 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env.get_value("SECRET_KEY", str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env.get_value("DEBUG", bool)
-DEBUG = True
+DEBUG = env.get_value("DEBUG", bool)
+
 
 ON_HEROKU = env.get_value("ON_HEROKU", bool)
 
