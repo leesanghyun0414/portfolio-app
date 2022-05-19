@@ -16,7 +16,7 @@ function moveMenuList(categoryId: string, menuName: string): void {
       class="inline-grid text-regal-blue font-semibold items-center place-items-center text-xl md:text-2xl cursor-pointer"
       @click="moveMenuList(child.id, child.data.name)"
     >
-      <div class="shadow-md">
+      <div class="">
         <a>
           <img
             :src="ASSET_ROOT + child.data.image"
